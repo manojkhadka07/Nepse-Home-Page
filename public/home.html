@@ -1,0 +1,65 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="support.js"></script>
+  <script src="app.js"></script>
+
+  <style>
+    .positive-change {
+      background-color: #3CBC89;
+      color: white;
+    }
+
+    .negative-change {
+      background-color: #EE6C70;
+      color: white;
+    }
+
+    .zero-change {
+      background-color: #106DB1;
+      color: white;
+    }
+
+    .sorted::after {
+      content: ' ▲';
+    }
+
+    .sorted.desc::after {
+      content: ' ▼';
+    }
+
+    table td {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Today's Share Price</h1>
+  <table class="table table-sm">
+      <thead class="thead-dark">
+          <tr>
+            <th data-sort="stockSymbol">Symbol</th>
+            <th data-sort="maxPrice">Max Price</th>
+            <th data-sort="minPrice">Min Price</th>
+            <th data-sort="openingPrice">Opening Price</th>
+            <th data-sort="closingPrice">Closing Price</th>
+            <th data-sort="amount">Amount</th>
+            <th data-sort="previousClosing">Pre Closing</th>
+            <th data-sort="differenceRs">Difference (Rs)</th>
+            <th data-sort="percentChange">Percent Change</th>
+            <th data-sort="volume">Volume</th>
+            <th data-sort="asOfDateString">As of Date String</th>
+          </tr>
+        </thead>
+        <tbody id="stockData">
+          <!-- Table rows will be dynamically populated here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
