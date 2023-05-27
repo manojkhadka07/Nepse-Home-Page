@@ -4,65 +4,41 @@ function populateTable() {
       const stocks = response.data;
 
       const stockDataContainer = document.getElementById('stockData');
+      const asOfDateContainer = document.getElementById('asOfDate');
 
       stocks.forEach(stock => {
         const row = document.createElement('tr');
 
         // Create table cells and populate data
-        const stockSymbolCell = document.createElement('td');
-        stockSymbolCell.setAttribute('data-column', 'stockSymbol');
-        stockSymbolCell.textContent = stock.stockSymbol;
+        const stockSymbolCell = createTableCell(stock.stockSymbol, 'stockSymbol');
         row.appendChild(stockSymbolCell);
 
-        const maxPriceCell = document.createElement('td');
-        maxPriceCell.setAttribute('data-column', 'maxPrice');
-        maxPriceCell.textContent = stock.maxPrice;
+        const maxPriceCell = createTableCell(stock.maxPrice, 'maxPrice');
         row.appendChild(maxPriceCell);
 
-        const minPriceCell = document.createElement('td');
-        minPriceCell.setAttribute('data-column', 'minPrice');
-        minPriceCell.textContent = stock.minPrice;
+        const minPriceCell = createTableCell(stock.minPrice, 'minPrice');
         row.appendChild(minPriceCell);
 
-        const openingPriceCell = document.createElement('td');
-        openingPriceCell.setAttribute('data-column', 'openingPrice');
-        openingPriceCell.textContent = stock.openingPrice;
+        const openingPriceCell = createTableCell(stock.openingPrice, 'openingPrice');
         row.appendChild(openingPriceCell);
 
-        const closingPriceCell = document.createElement('td');
-        closingPriceCell.setAttribute('data-column', 'closingPrice');
-        closingPriceCell.textContent = stock.closingPrice;
+        const closingPriceCell = createTableCell(stock.closingPrice, 'closingPrice');
         row.appendChild(closingPriceCell);
 
-        const amountCell = document.createElement('td');
-        amountCell.setAttribute('data-column', 'amount');
-        amountCell.textContent = stock.amount;
+        const amountCell = createTableCell(stock.amount, 'amount');
         row.appendChild(amountCell);
 
-        const previousClosingCell = document.createElement('td');
-        previousClosingCell.setAttribute('data-column', 'previousClosing');
-        previousClosingCell.textContent = stock.previousClosing;
+        const previousClosingCell = createTableCell(stock.previousClosing, 'previousClosing');
         row.appendChild(previousClosingCell);
 
-        const differenceCell = document.createElement('td');
-        differenceCell.setAttribute('data-column', 'differenceRs');
-        differenceCell.textContent = stock.differenceRs;
+        const differenceCell = createTableCell(stock.differenceRs, 'differenceRs');
         row.appendChild(differenceCell);
 
-        const percentChangeCell = document.createElement('td');
-        percentChangeCell.setAttribute('data-column', 'percentChange');
-        percentChangeCell.textContent = stock.percentChange;
+        const percentChangeCell = createTableCell(stock.percentChange, 'percentChange');
         row.appendChild(percentChangeCell);
 
-        const volumeCell = document.createElement('td');
-        volumeCell.setAttribute('data-column', 'volume');
-        volumeCell.textContent = stock.volume;
+        const volumeCell = createTableCell(stock.volume, 'volume');
         row.appendChild(volumeCell);
-
-        const asOfDateStringCell = document.createElement('td');
-        asOfDateStringCell.setAttribute('data-column', 'asOfDateString');
-        asOfDateStringCell.textContent = stock.asOfDateString;
-        row.appendChild(asOfDateStringCell);
 
         // Apply different styles based on percent change
         const percentChange = stock.percentChange;
@@ -77,6 +53,11 @@ function populateTable() {
         // Append the row to the table body
         stockDataContainer.appendChild(row);
       });
+
+      // Set the asOfDate value
+      if (stocks.length > 0) {
+        asOfDateContainer.textContent = stocks[0].asOfDateString;
+      }
 
       // Get the table element
       const table = document.querySelector('.table');
@@ -144,6 +125,14 @@ function populateTable() {
     .catch(error => {
       console.error(error);
     });
+}
+
+// Helper function to create a table cell
+function createTableCell(text, columnName) {
+  const cell = document.createElement('td');
+  cell.setAttribute('data-column', columnName);
+  cell.textContent = text;
+  return cell;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

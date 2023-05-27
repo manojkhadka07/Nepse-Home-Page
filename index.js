@@ -18,14 +18,19 @@ app.get('/api/data', async (req, res) => {
     res.json(data);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to fetch data' });
+    res.status(500).json({ error: 'Failed to fetch data' }); //git commit -m "Commit message"
   }
 });
-
 // Route to serve the home page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
+
+// Route to serve another page
+app.get('/summary', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'summary.html'));
+});
+
 
 // Start the server
 app.listen(port, () => {

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard</h1>
+
+    <div class="row" id="dataContainer">
+      <!-- Cards will be dynamically populated here -->
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: 'https://www.nepalipaisa.com/api/GetIndexLive',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          if (response.statusCode === 200) {
+            const data = response.result;
+            populateCards(data);
+          } else {
+            console.error('Failed to fetch data:', response.message);
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('AJAX request error:', error);
+        }
+      });
+    });
+
+    function populateCards(data) {
+      const container = $('#dataContainer');
+
+      data.forEach(function(item) {
+        const card = $('<div>').addClass('col-lg-4 col-md-6');
+        const cardBody = $('<div>').addClass('card-body');
+
+        $('<h5>').addClass('card-title').text(item.indexName).appendTo(cardBody);
+        $('<p>').addClass('card-text').text('Index Value: ' + item.indexValue).appendTo(cardBody);
+        $('<p>').addClass('card-text').text('Percent Change: ' + item.percentChange).appendTo(cardBody);
+        $('<p>').addClass('card-text').text('Difference: ' + item.difference).appendTo(cardBody);
+        $('<p>').addClass('card-text').text('Turnover: ' + item.turnover).appendTo(cardBody);
+        $('<p>').addClass('card-text').text('Volume: ' + item.volume).appendTo(cardBody);
+
+        cardBody.appendTo(card);
+        card.appendTo(container);
+      });
+    }
+  </script>
+</body>
+</html>
+

@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Stock Data</title>
@@ -6,6 +6,61 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="support.js"></script>
   <script src="app.js"></script>
+
+  <!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <style>
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard</h1>
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Nepse</h5>
+            <p class="card-text">Value</p>
+            <p class="card-text">Change</p>
+            <p class="card-text">Loss Gain</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Float</h5>
+            <p class="card-text">Value</p>
+            <p class="card-text">Change</p>
+            <p class="card-text">Loss Gain</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Sensitive</h5>
+            <p class="card-text">Value</p>
+            <p class="card-text">Change</p>
+            <p class="card-text">Loss Gain</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
 
   <style>
     .positive-change {
@@ -38,28 +93,27 @@
 </head>
 <body>
   <div class="container">
-    <h1>Today's Share Price</h1>
-  <table class="table table-sm">
+    <h2>Today's Share Price</h2>
+    <h5>Last Update: <span id="asOfDate"></span></h5>
+    <table class="table table-sm">
       <thead class="thead-dark">
-          <tr>
-            <th data-sort="stockSymbol">Symbol</th>
-            <th data-sort="maxPrice">Max Price</th>
-            <th data-sort="minPrice">Min Price</th>
-            <th data-sort="openingPrice">Opening Price</th>
-            <th data-sort="closingPrice">Closing Price</th>
-            <th data-sort="amount">Amount</th>
-            <th data-sort="previousClosing">Pre Closing</th>
-            <th data-sort="differenceRs">Difference (Rs)</th>
-            <th data-sort="percentChange">Percent Change</th>
-            <th data-sort="volume">Volume</th>
-            <th data-sort="asOfDateString">As of Date String</th>
-          </tr>
-        </thead>
-        <tbody id="stockData">
-          <!-- Table rows will be dynamically populated here -->
-        </tbody>
-      </table>
-    </div>
+        <tr>
+          <th data-sort="stockSymbol">Symbol</th>
+          <th data-sort="maxPrice">Max Price</th>
+          <th data-sort="minPrice">Min Price</th>
+          <th data-sort="openingPrice">Opening Price</th>
+          <th data-sort="closingPrice">Closing Price</th>
+          <th data-sort="amount">Amount</th>
+          <th data-sort="previousClosing">Pre Closing</th>
+          <th data-sort="differenceRs">Difference (Rs)</th>
+          <th data-sort="percentChange">Percent Change</th>
+          <th data-sort="volume">Volume</th>
+        </tr>
+      </thead>
+      <tbody id="stockData">
+        <!-- Table rows will be dynamically populated here -->
+      </tbody>
+    </table>
   </div>
 </body>
 </html>
